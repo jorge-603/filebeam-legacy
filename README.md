@@ -3,7 +3,7 @@
 **Files** es un servicio para compartir archivos facilmente con otras personas usando enlaces directos en redes sociales. Actualmente solo soporta Discord, pero proximamente iré añadiendo mas funciones.
 PD: Si, primera vez que uso el README.md :grin:
 
-![image](https://github.com/xXJorge603Xx/files_dev/assets/88514086/5ee9acce-be5f-4770-a3d7-05af620d1c8b)
+![image](https://files.jorge603.xyz/file/65de64.png)
 
 # Como ejecutar Files en mi PC
 
