@@ -43,7 +43,7 @@ ini_set('display_errors', 1);
         <main>
             <div id="dropArea">
                 <i data-feather="upload-cloud"></i>
-                <span>ARRASTRA Y SUELTA UN ARCHIVO AQUI</span>
+                <span class="title">ARRASTRA Y SUELTA UN ARCHIVO AQUI</span>
                 <span class="divider">o</span>
                 <span class="sub">haz click para seleccionar</span>
                 <input type="file" id="fileInput" name="uploadedFile" />

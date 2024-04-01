@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+    setInterval(() => {
+        if (window.matchMedia("(max-width: 580px)").matches) {
+            document.querySelector('#dropArea .title').textContent = "SELECCIONA UN ARCHIVO";
+        } else {
+            document.querySelector('#dropArea .title').textContent = "ARRASTRA Y SUELTA UN ARCHIVO AQUI";
+        }
+    }, 1000);
+
     feather.replace(); // Cargar Iconos
 
     /* ------------------------------- Background ------------------------------- */

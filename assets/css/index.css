@@ -25,6 +25,10 @@ header {
 
         .appName {
             font-size: 22px;
+
+            @media screen and (width<=580px) {
+                display: none;
+            }
         }
 
         &:hover {
@@ -39,6 +43,10 @@ header {
         font-weight: bold;
         transition: all 0.3s ease 0s;
         color: var(--col-fg-secondary);
+
+        @media screen and (width<=580px) {
+            display: none;
+        }
     }
 
 
@@ -147,8 +155,16 @@ main {
     background-color: var(--col-bg-secondary-semi);
     background-image: url(/assets/img/tex_noise.png);
 
+    @media screen and (width<=580px) {
+        transform: none !important;
+    }
+
     &:hover {
         filter: brightness(150%);
+
+        @media (prefers-color-scheme: light) {
+            filter: brightness(80%);
+        }
     }
 
     & * {
@@ -159,8 +175,9 @@ main {
         }
     }
 
-    &:hover {
-        filter: brightness(80%);
+    .title {
+        max-width: 90%;
+        text-align: center;
     }
 
     .feather {
@@ -203,6 +220,13 @@ main {
 
     span.sub {
         font-size: .8em;
+    }
+
+    .divider,
+    span.sub {
+        @media screen and (width<=580px) {
+            display: none;
+        }
     }
 
     input {

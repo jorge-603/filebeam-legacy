@@ -7,7 +7,7 @@
 :root {
     --col-bg-main: rgba(242, 242, 242, 1);
     --col-bg-secondary: rgba(227, 227, 227, 1);
-    --col-bg-secondary-semi: rgba(227, 227, 227, 0.5);
+    --col-bg-secondary-semi: rgba(227, 227, 227, 0.3);
     --col-bg-secondary-hover: rgba(201, 201, 201, 1);
     --col-fg-primary: rgba(32, 33, 36, 1);
     --col-fg-secondary: rgba(151, 149, 145, 1);
@@ -19,7 +19,7 @@
     @media (prefers-color-scheme: dark) {
         --col-bg-main: rgba(12, 12, 12, 1);
         --col-bg-secondary: rgba(24, 24, 24, 1);
-        --col-bg-secondary-semi: rgba(24, 24, 24, 0.5);
+        --col-bg-secondary-semi: rgba(24, 24, 24, 0.3);
         --col-bg-secondary-hover: rgba(34, 34, 34, 1);
         --col-fg-primary: rgba(244, 247, 248, 1);
         --col-fg-secondary: rgba(115, 116, 117, 1);
@@ -30,6 +30,12 @@
 
 /* ----------------------------- Estilos Basicos ---------------------------- */
 
+@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    body {
+        zoom: 0.6;
+    }
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -38,6 +44,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 
     &:focus-visible {
         outline: 0;
