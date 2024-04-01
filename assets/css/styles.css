@@ -1,0 +1,214 @@
+/* --------------------------------- Fuentes -------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* --------------------------------- Colores -------------------------------- */
+
+:root {
+    --col-bg-main: rgba(242, 242, 242, 1);
+    --col-bg-secondary: rgba(227, 227, 227, 1);
+    --col-bg-secondary-semi: rgba(227, 227, 227, 0.5);
+    --col-bg-secondary-hover: rgba(201, 201, 201, 1);
+    --col-fg-primary: rgba(32, 33, 36, 1);
+    --col-fg-secondary: rgba(151, 149, 145, 1);
+    --col-fg-border: rgba(158, 158, 158, 1);
+    --col-fg-link: rgba(132, 199, 208, 1);
+    --col-btn-text: rgba(43, 44, 48, 1);
+    --col-btn-active: rgba(0, 171, 231, 1);
+
+    @media (prefers-color-scheme: dark) {
+        --col-bg-main: rgba(12, 12, 12, 1);
+        --col-bg-secondary: rgba(24, 24, 24, 1);
+        --col-bg-secondary-semi: rgba(24, 24, 24, 0.5);
+        --col-bg-secondary-hover: rgba(34, 34, 34, 1);
+        --col-fg-primary: rgba(244, 247, 248, 1);
+        --col-fg-secondary: rgba(115, 116, 117, 1);
+        --col-fg-border: rgba(75, 75, 75, 1);
+        --col-btn-text: rgba(213, 216, 224, 1);
+    }
+}
+
+/* ----------------------------- Estilos Basicos ---------------------------- */
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    &:focus-visible {
+        outline: 0;
+        outline: 2px solid #00abe7;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--col-fg-primary);
+    background-color: var(--col-bg-main);
+    font-family: Inter, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--col-fg-link);
+
+    &:hover {
+        filter: brightness(80%);
+    }
+}
+
+/* --------------------------------- Botones -------------------------------- */
+
+button {
+    gap: 6px;
+    display: flex;
+    cursor: pointer;
+    appearance: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    align-items: center;
+    border-style: solid;
+    flex-direction: row;
+    border-width: 1.5px;
+    font-family: inherit;
+    letter-spacing: 0.4px;
+    justify-content: center;
+    transition: all .3s ease;
+    text-transform: uppercase;
+    color: var(--col-btn-text);
+    border-color: var(--col-fg-border);
+    background-color: var(--col-bg-secondary);
+
+    &:hover {
+        padding: 8px 16px;
+        letter-spacing: 0.8px;
+        background-color: var(--col-bg-secondary-hover);
+    }
+
+    &:active {
+        scale: .95;
+    }
+
+    &:disabled {
+        opacity: .4;
+        pointer-events: none;
+    }
+
+    .feather {
+        width: auto;
+        height: 1.5em;
+    }
+}
+
+/* --------------------------- Menus de seleccion --------------------------- */
+
+.custom-select-container {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+
+    & * {
+        box-sizing: border-box;
+    }
+
+    .is-disabled {
+        opacity: .333;
+    }
+
+    select {
+        top: 0;
+        left: 0;
+        position: absolute;
+        visibility: hidden;
+    }
+
+    .custom-select-opener {
+        display: block;
+        cursor: pointer;
+        overflow: hidden;
+        padding-top: 4px;
+        position: relative;
+        padding-left: 10px;
+        border-radius: 8px;
+        padding-right: 25px;
+        padding-bottom: 4px;
+        transition: all .3s ease;
+        color: var(--col-fg-primary);
+        border: 1.8px solid var(--col-fg-border);
+        background-color: var(--col-bg-secondary);
+
+        &:hover {
+            background-color: var(--col-bg-secondary-hover);
+        }
+
+        &::after {
+            top: 50%;
+            width: 0;
+            height: 0;
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 5px 5px 0 5px;
+            transform: translate(6px, -2px);
+            border-color: var(--col-fg-secondary) transparent transparent transparent;
+        }
+    }
+
+    &.is-open .custom-select-opener::after {
+        transform: scaleY(-1) translate(6px, 2px);
+    }
+
+    .custom-select-panel {
+        opacity: 0;
+        width: 100%;
+        bottom: 100%;
+        z-index: 100;
+        display: flex;
+        overflow: hidden;
+        padding: 8px 10px;
+        position: absolute;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        pointer-events: none;
+        flex-direction: column;
+        transition: all .5s ease;
+        transform: translateY(50px);
+        border: 1.8px solid var(--col-fg-border);
+        background-color: var(--col-bg-secondary);
+
+        .custom-select-option {
+            padding: 4px;
+            margin: 2px 0;
+            cursor: pointer;
+            border-radius: 6px;
+            color: var(--col-fg-primary);
+
+            &.has-focus {
+                background-color: var(--col-bg-secondary-hover);
+            }
+        }
+    }
+
+    &.is-open .custom-select-panel {
+        opacity: 1;
+        pointer-events: initial;
+        transform: translate(0);
+    }
+}
