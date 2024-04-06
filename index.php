@@ -44,7 +44,6 @@
 		</button>
 	</form>
 	<div class="disclaimer">
-		<p class="secondary">Version de pruebas. Esto no representa el resultado final de FILES</p>
 		<p class="secondary">Al usar este sitio web, aceptas haber leido el <a href="disclaimer.html">disclaimer</a></p>
 		<p class="secondary">FILEBEAM v1.0.0</p>
 	</div>
