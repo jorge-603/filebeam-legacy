@@ -1,13 +1,8 @@
-<?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>FILES (DEV)</title>
+	<title>FILEBEAM</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
@@ -16,18 +11,14 @@ ini_set('display_errors', 1);
     <meta property="og:description" content="Comparte archivos rapidamente mediante enlaces directos">
     <meta property="og:url" content="files.jorge603.xyz">
     <meta property="og:type" content="website">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 	<img src="assets/favicon.ico">
-	<h1>Subir un archivo (DEV)</h1>
-	<?php
-    $queryString = isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '';
-    ?>
+	<h1>Subir un archivo</h1>
 
-	<form class="fileForm" method="POST" action="<?php echo 'submit.php' . $queryString; ?>"
-		enctype="multipart/form-data">
-
+	<form class="fileForm" method="POST" enctype="multipart/form-data">
 		<div id="dragDropArea">
 			<svg class="upload-icon secondary" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
 				<path
@@ -40,15 +31,12 @@ ini_set('display_errors', 1);
 			</svg>
 			<span class="secondary">Arrastre y suelte un archivo aquí o haga clic para seleccionar</span>
 			<span class="secondary"><strong>Tamaño maximo permitido: 100MB</strong></span>
-			<input type="file" id="fileInput" name="uploadedFile" />
+			<input type="file" id="fileInput" name="file"/>
 		</div>
-		<?php
-        if (isset($_SESSION['message']) && $_SESSION['message']) {
-            printf('<b id="output">%s</b>', $_SESSION['message']);
-            unset($_SESSION['message']);
-        }
-        ?>
-		<button disabled id="uploadBtn" type="submit" name="uploadBtn" value="Subir">
+		<div id="output">
+		<script src="submit.js"></script>
+		</div>
+		<button disabled id="uploadBtn" type="button" name="uploadBtn" value="Subir" onClick="uploadFile()">
 			<span class="nf-icon">󰅧</span> Subir
 		</button>
 		<button class="hidden" id="gdpsBtn" name="gdpsBtn">
@@ -58,9 +46,13 @@ ini_set('display_errors', 1);
 	<div class="disclaimer">
 		<p class="secondary">Version de pruebas. Esto no representa el resultado final de FILES</p>
 		<p class="secondary">Al usar este sitio web, aceptas haber leido el <a href="disclaimer.html">disclaimer</a></p>
-		<p class="secondary">FILES (BETA) v0.2.0</p>
+		<p class="secondary">FILEBEAM v1.0.0</p>
 	</div>
+
 	<script src="index.js"></script>
+	<script src="validator.js"></script>
+
+
 </body>
 
 </html>
