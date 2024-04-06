@@ -179,5 +179,6 @@ window.addEventListener('load', function () {
 		uploadIcon.classList.add('hidden');
 		icon.classList.add('spin');
 		uploadBtn.disabled = false;
+		
 	}
 });
