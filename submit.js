@@ -3,6 +3,7 @@ function uploadFile(event) {
     var formData = new FormData();
     var file = document.getElementById('fileInput').files[0];
     formData.append('file', file);
+    uploadBtn.disabled = true;
 
     $.ajax({
         url: 'api.php', // URL del script de servidor que maneja la carga del archivo
