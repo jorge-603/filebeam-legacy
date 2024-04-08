@@ -97,9 +97,7 @@ ini_set('display_errors', 1);
                     </h2>
                 </header>
                 <span class="divider"></span>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet iure, placeat veritatis ad ullam
-                    aut dolores, sint fuga vitae, ducimus quae sapiente! Repellat possimus ad quo dicta eius? Officia,
-                    molestiae.</p>
+                <p class="error-message"></p>
                 <div class="buttons">
                     <button data-micromodal-close>Descartar</button>
                 </div>

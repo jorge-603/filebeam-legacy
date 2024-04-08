@@ -22,6 +22,7 @@ function uploadFile() {
 
         },
         error: function (jqXHR, textStatus, errorMessage) {
+            document.querySelector('.error-message').innerText = jqXHR.reponse; // Aquí obtienes el mensaje de error devuelto por api.php
             MicroModal.show('dialog-error');
         }
     });
