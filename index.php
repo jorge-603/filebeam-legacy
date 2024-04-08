@@ -22,9 +22,6 @@ ini_set('display_errors', 1);
 </head>
 
 <body>
-    <?php
-    $queryString = isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '';
-    ?>
     <div class="background">
         <div class="blob"></div>
     </div>
