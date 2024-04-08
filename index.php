@@ -94,7 +94,7 @@ ini_set('display_errors', 1);
                     </h2>
                 </header>
                 <span class="divider"></span>
-                <p></p>
+                <p class="error-message"></p>
                 <div class="buttons">
                     <button data-micromodal-close>Aceptar</button>
                 </div>
