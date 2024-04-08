@@ -22,7 +22,11 @@ function uploadFile() {
 
         },
         error: function (jqXHR, textStatus, errorMessage) {
+            document.querySelector('.loadingOverlay').classList.add('hidden');
             MicroModal.show('dialog-error');
+            document.querySelector('#dialog-error header h2').innerHTML = '<i data-feather="alert-triangle"></i> Error de PHP';
+            document.querySelector('#dialog-error p').textContent = errorMessage;
+            feather.replace();
         }
     });
 }
