@@ -45,7 +45,6 @@
     -webkit-tap-highlight-color: transparent;
 
     &:focus-visible {
-        outline: 0;
         outline: 2px solid #00abe7;
     }
 }
@@ -258,6 +257,7 @@ div.overlay {
         border-width: 1.5px;
         border-radius: 14px;
         transform: scale(1.2);
+        outline: none !important;
         border-color: var(--col-fg-border);
         background-color: var(--col-bg-main);
         transition: transform .4s cubic-bezier(0.190, 1.000, 0.220, 1.000) 0s;
