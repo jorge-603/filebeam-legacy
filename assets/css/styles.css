@@ -235,8 +235,8 @@ div.overlay {
     align-items: center;
     pointer-events: none;
     justify-content: center;
-    transition: all .3s ease 0s;
     background-color: var(--col-bg-overlay);
+    transition: opacity .3s cubic-bezier(0.190, 1.000, 0.220, 1.000) 0s;
 
     &.is-open {
         opacity: 1;
