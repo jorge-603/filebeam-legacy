@@ -12,12 +12,13 @@ ini_set('display_errors', 1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
     <!-- <meta property="og:title" content="FILES (BETA)">
     <meta property="og:description" content="Comparte archivos rapidamente mediante enlaces directos">
     <meta property="og:url" content="files.jorge603.xyz">
     <meta property="og:type" content="website"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +44,8 @@ ini_set('display_errors', 1);
         <main>
             <div id="dropArea">
                 <i data-feather="upload-cloud"></i>
-                <span class="title">ARRASTRA Y SUELTA UN ARCHIVO AQUI</span>
+                <span class="title small">SELECCIONA UN ARCHIVO</span>
+                <span class="title large">ARRASTRA Y SUELTA UN ARCHIVO AQUI</span>
                 <span class="divider">o</span>
                 <span class="sub">haz click para seleccionar</span>
                 <input type="file" id="fileInput" name="uploadedFile" />
@@ -56,17 +58,42 @@ ini_set('display_errors', 1);
                     <option value="expire-12">Expirar en 12 horas</option>
                     <option value="expire-24">Expirar en un dia</option>
                 </select>
-                <span>Tamaño Maximo: 100MB</span>
+                <span id="maxSize">Tamaño Maximo: 100MB</span>
             </div>
-            <button disabled id="uploadBtn" type="submit" name="uploadBtn" value="Subir" disabled>
-                <i data-feather="upload"></i> Subir
-            </button>
+            <div class="link hidden">
+                <span class="link-title">Archivo subido correctamente</span>
+                <a></a>
+                <span class="link-expire"><i data-feather="clock"></i>Expira en undefined</span>
+            </div>
+            <script src="./assets/js/submit.js"></script>
+            <form id="fileForm" method="POST" enctype="multipart/form-data">
+                <button disabled id="uploadBtn" name="uploadBtn" value="Subir" type="button" onclick="uploadFile();">
+                    <i data-feather="upload"></i> Subir
+                </button>
+            </form>
         </main>
     </div>
-    <script src="/assets/js/feather.min.js"></script>
-    <script src="/assets/js/custom-select.min.js"></script>
-    <script src="/assets/js/anime.min.js"></script>
-    <script src="/assets/js/index.js"></script>
+    <div class="loadingOverlay hidden">
+        <svg class="spinner">
+            <circle>
+                <animateTransform attributeName="transform" type="rotate" values="-90;810" keyTimes="0;1" dur="2s"
+                    repeatCount="indefinite"></animateTransform>
+                <animate attributeName="stroke-dashoffset" values="0%;0%;-157.080%" calcMode="spline"
+                    keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s"
+                    repeatCount="indefinite"></animate>
+                <animate attributeName="stroke-dasharray" values="0% 314.159%;157.080% 157.080%;0% 314.159%"
+                    calcMode="spline" keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.39, 0" keyTimes="0;0.5;1" dur="2s"
+                    repeatCount="indefinite"></animate>
+            </circle>
+        </svg>
+    </div>
+    <script src="./assets/js/lib/feather.min.js"></script>
+    <script src="./assets/js/lib/custom-select.min.js"></script>
+    <script src="./assets/js/lib/anime.min.js"></script>
+    <script>
+    // Aqui se asigna la variable extBlacklist
+    </script>
+    <script src="./assets/js/index.js"></script>
 </body>
 
 </html>

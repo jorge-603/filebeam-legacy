@@ -1,11 +1,23 @@
+let selectedFile;
 document.addEventListener('DOMContentLoaded', function () {
-    setInterval(() => {
-        if (window.matchMedia("(max-width: 580px)").matches) {
-            document.querySelector('#dropArea .title').textContent = "SELECCIONA UN ARCHIVO";
-        } else {
-            document.querySelector('#dropArea .title').textContent = "ARRASTRA Y SUELTA UN ARCHIVO AQUI";
-        }
-    }, 1000);
+    const extBlacklist = [ // Extensiones no permitidas
+        ".js", ".jar", ".scr", ".cpl", ".jsp", ".doc", ".docx",
+    ];
+
+    const fileTypes = [ // Asociaciones de extensiones
+        { icon: 'image', name: 'Imagen', extensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'ico'] },
+        { icon: 'music', name: 'Audio', extensions: ['mp3', 'wav', 'm4a', 'flac', 'aac', 'ogg'] },
+        { icon: 'video', name: 'Video', extensions: ['mp4', 'mov', 'avi', 'mkv', 'wmv', 'flv'] },
+        { icon: 'archive', name: 'Archivo Comprimido', extensions: ['zip', 'rar', 'tar', '7z', 'gz', 'iso', 'torrent'] },
+        { icon: 'code', name: 'Codigo Fuente', extensions: ['html', 'htm', 'css', 'js', 'py', 'cpp', 'php'] },
+        { icon: 'file-text', name: 'Texto', extensions: ['txt', 'md', 'json'] },
+        { icon: 'package', name: 'Ejecutable', extensions: ['exe', 'apk', 'dmg', 'app', 'deb'] },
+        { icon: 'type', name: 'Fuente', extensions: ['ttf', 'otf', 'woff', 'woff2'] },
+    ];
+
+    // Obtener elementos del documento
+    const dropArea = document.getElementById('dropArea');
+    const fileInput = document.getElementById('fileInput');
 
     feather.replace(); // Cargar Iconos
 
@@ -60,11 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     genBlobs();
 
-    /* ----------------------------- Perspectiva 3D ----------------------------- */
+    /* -------------------------------- Efecto 3D ------------------------------- */
 
     let mouseX = 0;
     let mouseY = 0;
-    const dropArea = document.getElementById('dropArea');
 
     function updateTilt() {
         const rect = dropArea.getBoundingClientRect();
@@ -76,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const tiltY = -dx * 0.01; // Sensibilidad en el eje X
 
         dropArea.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-
         requestAnimationFrame(updateTilt);
     }
 
@@ -86,9 +96,126 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('dragover', handleMouseMove);
     updateTilt();
 
-    /* ---------------------------- Menu de seleccion --------------------------- */
+    /* ------------------------- Funcionalidad Principal ------------------------ */
 
-    customSelect('select');
+    // Prevenir el comportamiento por defecto
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+
+    // Asigna las clases correspondientes al arrastrar
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, function () {
+            dropArea.classList.add('dragover');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, function () {
+            dropArea.classList.remove('dragover');
+        });
+    });
+
+    dropArea.addEventListener('click', function (e) {
+        fileInput.click();
+    });
+
+
+    // Maneja los archivos seleccionados de forma correspondiente
+    function handleInput(files) {
+        document.querySelectorAll('.divider, .sub')
+            .forEach(elem => elem.classList.add('active'));
+        handleFile(files[0]);
+    }
+
+    fileInput.addEventListener('change', function (e) {
+        if (e.target.files.length > 0 && e.target.files[0].name !== '') {
+            handleInput(e.target.files);
+        } else {
+            document.querySelectorAll('.divider, .sub')
+                .forEach(elem => elem.classList.remove('active'));
+            document.querySelector("#dropArea svg").setAttribute("data-feather", 'upload-cloud');
+            document.querySelector('.title.large').textContent = 'ARRASTRA Y SUELTA UN ARCHIVO AQUI';
+            document.querySelector('.title.small').textContent = 'SELECCIONA UN ARCHIVO';
+            document.querySelector('.sub').textContent = 'haz click para seleccionar';
+        }
+    });
+
+    dropArea.addEventListener('drop', function (e) {
+        e.preventDefault();
+        if (e.dataTransfer.items) {
+            // Verifica que es un archivo antes de manejarlo
+            for (var i = 0; i < e.dataTransfer.items.length; i++) {
+                if (e.dataTransfer.items[i].kind === 'file') {
+                    handleInput(e.dataTransfer.files);
+                    break;
+                }
+            }
+        }
+    });
+
+
+    function handleFile(file) {
+        selectedFile = file;
+        document.getElementById('uploadBtn').disabled = false;
+        function typeInfo(ext) {
+            // Obtiene el nombre del tipo de archivo y su icono correspondiente
+            for (const fileType of fileTypes) {
+                if (fileType.extensions.includes(ext)) {
+                    return { fileType: fileType, icon: fileType.icon };
+                }
+            }
+            return { fileType: null, icon: 'file' };
+        }
+
+        // Regresa el tamaño del archivo en un formato legible
+        function fileSize(size) {
+            if (size < 1024) {
+                return size + ' B';
+            } else if (size < 1048576) {
+                return (size / 1024).toFixed(2) + ' KB';
+            } else if (size < 1073741824) {
+                return (size / 1048576).toFixed(2) + ' MB';
+            } else {
+                return (size / 1073741824).toFixed(2) + ' GB';
+            }
+        }
+
+        const name = file.name;
+        const size = file.size;
+        const ext = name.slice(name.lastIndexOf(".") + 1);
+
+        // Verifica si la extension esta en la lista negra
+        if (extBlacklist.includes(`.${ext}`)) {
+            console.log('File extension is blacklisted.');
+        } else {
+            // Actualiza los detalles del archivo
+            const { fileType, icon } = typeInfo(ext);
+            document.querySelector("#dropArea svg").setAttribute("data-feather", icon);
+            document.querySelector('.title.large').textContent = name;
+            document.querySelector('.title.small').textContent = name;
+            document.querySelector('.sub').textContent = `${fileType ? fileType.name : 'Archivo'}, ${fileSize(size)}`;
+            feather.replace();
+        }
+    }
+
+    /* ---------------------------- Subida de Archivo --------------------------- */
+
+    // Fecha de expiracion
+    var expireDropdown = document.getElementById('expireDropdown');
+    expireDropdown.onchange = (event) => {
+        if (event.target.value === 'expire-0') {
+            document.getElementById('maxSize').textContent = 'Tamaño Maximo: 100MB';
+        } else {
+            document.getElementById('maxSize').textContent = 'Tamaño Maximo: 1GB';
+        }
+    };
+
+    customSelect('select'); // Remplaza los menus de seleccion
 });

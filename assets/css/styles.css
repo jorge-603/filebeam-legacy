@@ -10,6 +10,7 @@
     --col-bg-secondary-semi: rgba(227, 227, 227, 0.3);
     --col-bg-secondary-hover: rgba(201, 201, 201, 1);
     --col-fg-primary: rgba(32, 33, 36, 1);
+    --col-fg-primary-semi: rgba(32, 33, 36, .5);
     --col-fg-secondary: rgba(151, 149, 145, 1);
     --col-fg-border: rgba(158, 158, 158, 1);
     --col-fg-link: rgba(132, 199, 208, 1);
@@ -22,19 +23,15 @@
         --col-bg-secondary-semi: rgba(24, 24, 24, 0.3);
         --col-bg-secondary-hover: rgba(34, 34, 34, 1);
         --col-fg-primary: rgba(244, 247, 248, 1);
+        --col-fg-primary-semi: rgba(244, 247, 248, .5);
         --col-fg-secondary: rgba(115, 116, 117, 1);
         --col-fg-border: rgba(75, 75, 75, 1);
         --col-btn-text: rgba(213, 216, 224, 1);
+        --col-warning: rgb(248, 185, 67);
     }
 }
 
 /* ----------------------------- Estilos Basicos ---------------------------- */
-
-@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
-    body {
-        zoom: 0.6;
-    }
-}
 
 ::-webkit-scrollbar {
     display: none;
@@ -71,10 +68,16 @@ body {
 a {
     text-decoration: none;
     color: var(--col-fg-link);
+    transition: all 0.3s ease 0s;
 
     &:hover {
         filter: brightness(80%);
     }
+}
+
+input,
+select {
+    display: none;
 }
 
 /* --------------------------------- Botones -------------------------------- */
@@ -92,7 +95,6 @@ button {
     flex-direction: row;
     border-width: 1.5px;
     font-family: inherit;
-    letter-spacing: 0.4px;
     justify-content: center;
     transition: all .3s ease;
     text-transform: uppercase;
@@ -102,7 +104,7 @@ button {
 
     &:hover {
         padding: 8px 16px;
-        letter-spacing: 0.8px;
+        letter-spacing: 1.2px;
         background-color: var(--col-bg-secondary-hover);
     }
 
@@ -136,14 +138,14 @@ button {
     }
 
     .is-disabled {
-        opacity: .333;
+        opacity: .3;
     }
 
     select {
         top: 0;
         left: 0;
+        display: none;
         position: absolute;
-        visibility: hidden;
     }
 
     .custom-select-opener {
@@ -184,7 +186,7 @@ button {
 
     .custom-select-panel {
         opacity: 0;
-        width: 100%;
+        width: 110%;
         bottom: 100%;
         z-index: 100;
         display: flex;
@@ -195,7 +197,7 @@ button {
         margin-bottom: 8px;
         pointer-events: none;
         flex-direction: column;
-        transition: all .5s ease;
+        transition: all .3s ease;
         transform: translateY(50px);
         border: 1.8px solid var(--col-fg-border);
         background-color: var(--col-bg-secondary);

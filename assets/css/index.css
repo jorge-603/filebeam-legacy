@@ -1,3 +1,15 @@
+/* ----------------------------- Estilos Basicos ---------------------------- */
+
+@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    body {
+        zoom: .8;
+    }
+
+    header {
+        display: none !important;
+    }
+}
+
 /* --------------------------------- Header --------------------------------- */
 header {
     width: 100%;
@@ -14,7 +26,7 @@ header {
         align-items: center;
         flex-direction: row;
         justify-content: flex-start;
-        color: var(--col-fg-secondary);
+        color: var(--col-fg-primary-semi);
 
         .appIcon {
             width: auto;
@@ -42,7 +54,7 @@ header {
         opacity: 0;
         font-weight: bold;
         transition: all 0.3s ease 0s;
-        color: var(--col-fg-secondary);
+        color: var(--col-fg-primary-semi);
 
         @media screen and (width<=580px) {
             display: none;
@@ -57,7 +69,7 @@ header {
         align-items: center;
         flex-direction: row;
         justify-content: flex-start;
-        color: var(--col-fg-secondary);
+        color: var(--col-fg-primary-semi);
 
         a,
         .feather {
@@ -74,12 +86,48 @@ header {
         }
 
         a {
-            color: var(--col-fg-secondary);
+            color: var(--col-fg-primary-semi);
 
             &:hover {
                 filter: none;
             }
         }
+    }
+}
+
+/* ---------------------------- Pantalla de carga --------------------------- */
+
+.loadingOverlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease;
+    background-color: rgba(0, 0, 0, .7);
+
+    .spinner {
+        width: 60px;
+        height: 60px;
+        padding: 3px;
+        overflow: visible;
+
+        &>circle {
+            r: 50%;
+            cx: 50%;
+            cy: 50%;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 6px;
+            stroke-linecap: round;
+            transform-origin: center;
+        }
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -110,6 +158,7 @@ header {
     position: absolute;
     align-items: center;
     pointer-events: none;
+    transition: all 1s ease;
     justify-content: center;
 
     @media (prefers-color-scheme: light) {
@@ -127,6 +176,7 @@ header {
 /* -------------------------------- Contenido ------------------------------- */
 
 main {
+    gap: 24px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -144,6 +194,7 @@ main {
     height: 300px;
     display: flex;
     max-width: 90%;
+    max-height: 60%;
     cursor: pointer;
     font-weight: bold;
     border-radius: 18px;
@@ -153,13 +204,14 @@ main {
     transition: all 0.3s ease-in-out 0s;
     border: 1.8px solid var(--col-fg-border);
     background-color: var(--col-bg-secondary-semi);
-    background-image: url(/assets/img/tex_noise.png);
+    background-image: url('../img/tex_noise.png');
 
     @media screen and (width<=580px) {
         transform: none !important;
     }
 
-    &:hover {
+    &:hover,
+    &.dragover {
         filter: brightness(150%);
 
         @media (prefers-color-scheme: light) {
@@ -176,8 +228,23 @@ main {
     }
 
     .title {
-        max-width: 90%;
+        max-width: 80%;
+        overflow: hidden;
         text-align: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &.large {
+            @media screen and (width<=580px) {
+                display: none;
+            }
+        }
+
+        &.small {
+            @media screen and (width>580px) {
+                display: none;
+            }
+        }
     }
 
     .feather {
@@ -188,8 +255,10 @@ main {
 
     .divider {
         opacity: .5;
+        height: 1.3em;
         overflow: hidden;
         text-align: center;
+        transition: all .3s ease;
 
         &::before,
         &::after {
@@ -216,20 +285,71 @@ main {
             left: 0.5em;
             margin-right: -50%;
         }
+
+        &.active {
+            height: 0;
+        }
     }
 
     span.sub {
         font-size: .8em;
+
+        @media screen and (width<=580px) {
+            display: none;
+        }
+
+        &.active {
+            display: initial;
+        }
     }
 
-    .divider,
-    span.sub {
-        @media screen and (width<=580px) {
+    @media screen and (width<=580px) {
+        .divider {
+            height: 0;
+        }
+    }
+}
+
+.link {
+    gap: 6px;
+    bottom: 28px;
+    display: flex;
+    font-size: .95em;
+    position: absolute;
+    align-items: center;
+    flex-direction: column;
+
+    svg {
+        height: 1em;
+    }
+
+    .link-title {
+        font-size: .85em;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--col-fg-primary);
+    }
+
+    a,
+    span {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .link-expire {
+        opacity: .5;
+        font-size: .9em;
+        font-weight: bold;
+        color: var(--col-warning);
+
+        &.hidden {
             display: none;
         }
     }
 
-    input {
+    &.hidden {
         display: none;
     }
 }
@@ -237,18 +357,33 @@ main {
 .expire {
     gap: 8px;
     display: flex;
-    margin-top: 22px;
     font-size: .9em;
     align-items: center;
     flex-direction: column;
-    color: var(--col-fg-secondary);
+    transition: all 0.3s ease 0s;
+    color: var(--col-fg-primary-semi);
 
     @media (prefers-color-scheme: light) {
-        color: var(--col-fg-primary);
+        color: var(--col-fg-primary-semi);
+    }
+
+    &.hidden {
+        @media screen and (height<=600px) {
+            opacity: 0;
+            pointer-events: none;
+        }
     }
 }
 
-#uploadBtn {
+#fileForm {
     bottom: 28px;
     position: absolute;
+
+    @media screen and (height<=600px) {
+        right: 28px;
+    }
+
+    &.hidden {
+        display: none;
+    }
 }
