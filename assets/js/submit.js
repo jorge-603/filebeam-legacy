@@ -20,6 +20,7 @@ function uploadFile() {
             feather.replace(); // Actualiza el icono
             fileInput.value = ''; // Limpia el archivo seleccionado
 
+
         },
         error: function (jqXHR, textStatus, errorMessage) {
             document.querySelector('.loadingOverlay').classList.add('hidden');
@@ -27,6 +28,7 @@ function uploadFile() {
             document.querySelector('#dialog-error header h2').innerHTML = '<i data-feather="alert-triangle"></i> Error de PHP';
             document.querySelector('#dialog-error p').textContent = errorMessage;
             feather.replace();
+            document.getElementById('uploadBtn').disabled = false;
         }
     });
 }
