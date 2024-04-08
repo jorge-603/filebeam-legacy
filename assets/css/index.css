@@ -53,7 +53,7 @@ header {
     .appVer {
         opacity: 0;
         font-weight: bold;
-        transition: all 0.3s ease 0s;
+        transition: all .3s ease 0s;
         color: var(--col-fg-primary-semi);
 
         @media screen and (width<=580px) {
@@ -74,7 +74,7 @@ header {
         a,
         .feather {
             cursor: pointer;
-            transition: all 0.3s ease 0s;
+            transition: all .3s ease 0s;
 
             &:hover {
                 color: var(--col-fg-primary);
@@ -105,7 +105,7 @@ header {
     align-items: center;
     justify-content: center;
     transition: all .3s ease;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: var(--col-bg-overlay);
 
     .spinner {
         width: 60px;
@@ -201,7 +201,7 @@ main {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    transition: all 0.3s ease-in-out 0s;
+    transition: all .3s ease-in-out 0s;
     border: 1.8px solid var(--col-fg-border);
     background-color: var(--col-bg-secondary-semi);
     background-image: url('../img/tex_noise.png');
@@ -277,12 +277,12 @@ main {
         }
 
         &::before {
-            right: 0.5em;
+            right: .5em;
             margin-left: -50%;
         }
 
         &::after {
-            left: 0.5em;
+            left: .5em;
             margin-right: -50%;
         }
 
@@ -360,7 +360,7 @@ main {
     font-size: .9em;
     align-items: center;
     flex-direction: column;
-    transition: all 0.3s ease 0s;
+    transition: all .3s ease 0s;
     color: var(--col-fg-primary-semi);
 
     @media (prefers-color-scheme: light) {

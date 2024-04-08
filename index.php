@@ -87,11 +87,34 @@ ini_set('display_errors', 1);
             </circle>
         </svg>
     </div>
+    <!-- [1] -->
+    <div class="overlay" id="dialog-error" aria-hidden="true">
+        <!-- [2] -->
+        <div class="dialog" tabindex="-1">
+            <!-- [3] -->
+            <div class="content" role="dialog" aria-modal="true">
+                <header>
+                    <h2>
+                        <i data-feather="alert-triangle"></i>
+                        Error
+                    </h2>
+                </header>
+                <span class="divider"></span>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet iure, placeat veritatis ad ullam
+                    aut dolores, sint fuga vitae, ducimus quae sapiente! Repellat possimus ad quo dicta eius? Officia,
+                    molestiae.</p>
+                <div class="buttons">
+                    <button data-micromodal-close>Descartar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./assets/js/lib/feather.min.js"></script>
     <script src="./assets/js/lib/custom-select.min.js"></script>
+    <script src="./assets/js/lib/micromodal.min.js"></script>
     <script src="./assets/js/lib/anime.min.js"></script>
     <script>
-    // Aqui se asigna la variable extBlacklist
+        // Aqui se asigna la variable extBlacklist
     </script>
     <script src="./assets/js/index.js"></script>
 </body>

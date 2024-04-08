@@ -22,7 +22,7 @@ function uploadFile() {
 
         },
         error: function (jqXHR, textStatus, errorMessage) {
-            alert(errorMessage);
+            MicroModal.show('dialog-error');
         }
     });
 }
