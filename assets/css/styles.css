@@ -227,16 +227,24 @@ button {
 /* -------------------------------- Dialogos -------------------------------- */
 
 div.overlay {
+    opacity: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    display: flex;
     position: absolute;
     align-items: center;
+    pointer-events: none;
     justify-content: center;
+    transition: all .3s ease 0s;
     background-color: var(--col-bg-overlay);
 
     &.is-open {
-        display: flex;
+        opacity: 1;
+        pointer-events: initial;
+
+        .dialog {
+            transform: scale(1);
+        }
     }
 
     .dialog {
@@ -249,8 +257,10 @@ div.overlay {
         border-style: solid;
         border-width: 1.5px;
         border-radius: 14px;
+        transform: scale(1.2);
         border-color: var(--col-fg-border);
         background-color: var(--col-bg-main);
+        transition: transform .4s cubic-bezier(0.190, 1.000, 0.220, 1.000) 0s;
 
         .divider {
             width: 100%;
@@ -264,6 +274,7 @@ div.overlay {
             gap: 12px;
             width: 100%;
             display: flex;
+            user-select: none;
             flex-direction: column;
 
             h2 {
