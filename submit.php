@@ -58,7 +58,7 @@ function submit($file){
             } else {
                 # Si excede el tamaño del archivo
                 http_response_code(413);
-                echo "El archivo excede el tamaño del archivo";
+                echo "El archivo excede el tamaño máximo permitido";
             }
 
         } else {
