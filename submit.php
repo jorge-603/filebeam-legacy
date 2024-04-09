@@ -52,7 +52,7 @@ function submit($file){
                 } else {
                     # Si el archivo no se subió / envió a la carpeta destino del servidor
                     http_response_code(500);
-                    echo "Ha ocurrido un error al subir el archivo";
+                    echo "Ha ocurrido un error al procesar el archivo";
                 }
 
             } else {
