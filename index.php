@@ -106,7 +106,7 @@ ini_set('display_errors', 1);
     <script src="./assets/js/lib/micromodal.min.js"></script>
     <script src="./assets/js/lib/anime.min.js"></script>
     <script>
-    // Aqui se asigna la variable extBlacklist
+        // Aqui se asigna la variable extBlacklist
     </script>
     <script src="./assets/js/index.js"></script>
 </body>

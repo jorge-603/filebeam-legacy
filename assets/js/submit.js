@@ -20,13 +20,18 @@ function uploadFile() {
             feather.replace(); // Actualiza el icono
             fileInput.value = ''; // Limpia el archivo seleccionado
 
+
         },
         error: function (jqXHR, textStatus, errorMessage) {
             document.querySelector('.loadingOverlay').classList.add('hidden');
-            MicroModal.show('dialog-error');
             document.querySelector('#dialog-error header h2').innerHTML = '<i data-feather="alert-triangle"></i> Error de PHP';
             document.querySelector('#dialog-error p').textContent = errorMessage;
+            document.getElementById('uploadBtn').disabled = false;
             feather.replace();
+            MicroModal.show('dialog-error', {
+                disableFocus: true,
+                disableEsc: true,
+            });
         }
     });
 }

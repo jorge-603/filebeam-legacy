@@ -21,11 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     feather.replace(); // Cargar Iconos
 
-    // Inicializar micromodal
-    MicroModal.init({
-        disableFocus: true,
-    });
-
     /* ------------------------------- Background ------------------------------- */
     const rand = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
     const colors = ["#001f3f", "#0074D9"];
