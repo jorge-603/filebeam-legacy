@@ -45,7 +45,7 @@
 	</form>
 	<div class="disclaimer">
 		<p class="secondary">Al usar este sitio web, aceptas haber leido el <a href="disclaimer.html">disclaimer</a></p>
-		<p class="secondary">FILEBEAM v1.0.0</p>
+		<p class="secondary">FILEBEAM v1.0.0-pre</p>
 	</div>
 
 	<script src="index.js"></script>
