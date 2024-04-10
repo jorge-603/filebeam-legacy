@@ -23,7 +23,8 @@ function uploadFile(event) {
 
         },
         error: function(jqXHR, textStatus, errorMessage) {
-            $('#output').html('Error al subir el archivo: ' + errorMessage);
+            var responseText = jqXHR.responseText
+            $('#output').html('<b>' + 'Error al subir el archivo: ' + responseText + " (" + jqXHR.status + ")" + '</b>');
         }
     });
 }
