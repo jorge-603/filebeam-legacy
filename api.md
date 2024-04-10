@@ -10,4 +10,7 @@ Cabe destacar que tambien puedes usar **cURL** para enviar peticiones a la API, 
 
 `curl -X POST -F "file=@/ruta/al/archivo.extension" https://filebeam.xyz/api.php`
 
-**NOTA:** Solo se admiten peticiones POST al servidor, de lo contrario el servidor devolverá un codigo de error 405 (Method Not Allowed).
+La respuesta que arrojará el servidor sería el enlace del archivo subido, por ejemplo:
+`https://filebeam.xyz/file/v6kAW7.jpg`
+
+**NOTA:** Solo se admiten peticiones POST al servidor, de lo contrario el servidor devolverá un codigo de error `405` (Method Not Allowed).
