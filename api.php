@@ -2,7 +2,13 @@
 
 require "submit.php";
 require "config/config.php";
-$method = $_SERVER['REQUEST_METHOD'];
+
+if($maintenance){
+    http_response_code(503);
+    echo "Servicio no disponible temporalmente (503)";
+}else{
+    
+    $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case "POST":
@@ -17,4 +23,5 @@ switch ($method) {
         http_response_code(405);
         echo "Solo se admiten peticiones POST";
         break;
+}
 }
