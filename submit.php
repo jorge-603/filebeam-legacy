@@ -45,7 +45,7 @@ function submit($file){
                     }
 
                     $domain = $GLOBALS['domain'];
-                    $fileUrl = "https://$domain/file/" . $newFileName;
+                    $fileUrl = "http://$domain/file/" . $newFileName;
 
                     echo $fileUrl;
 

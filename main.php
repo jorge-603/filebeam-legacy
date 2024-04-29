@@ -12,8 +12,8 @@ ini_set('display_errors', 1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <!-- <meta property="og:title" content="FILES (BETA)">
     <meta property="og:description" content="Comparte archivos rapidamente mediante enlaces directos">
     <meta property="og:url" content="files.jorge603.xyz">
@@ -62,7 +62,7 @@ ini_set('display_errors', 1);
                 <a></a>
                 <span class="link-expire"><i data-feather="clock"></i>Expira en undefined</span>
             </div>
-            <script src="./assets/js/submit.js"></script>
+            <script src="assets/js/submit.js"></script>
             <form id="fileForm" method="POST" enctype="multipart/form-data">
                 <button disabled id="uploadBtn" name="uploadBtn" value="Subir" type="button" onclick="uploadFile();">
                     <i data-feather="upload"></i> Subir
@@ -101,14 +101,14 @@ ini_set('display_errors', 1);
             </div>
         </div>
     </div>
-    <script src="./assets/js/lib/feather.min.js"></script>
-    <script src="./assets/js/lib/custom-select.min.js"></script>
-    <script src="./assets/js/lib/micromodal.min.js"></script>
-    <script src="./assets/js/lib/anime.min.js"></script>
+    <script src="assets/js/lib/feather.min.js"></script>
+    <script src="assets/js/lib/custom-select.min.js"></script>
+    <script src="assets/js/lib/micromodal.min.js"></script>
+    <script src="assets/js/lib/anime.min.js"></script>
     <script>
         // Aqui se asigna la variable extBlacklist
     </script>
-    <script src="./assets/js/index.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>

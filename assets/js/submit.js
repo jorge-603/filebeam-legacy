@@ -25,7 +25,7 @@ function uploadFile() {
         error: function (jqXHR, textStatus, errorMessage) {
             var responseText = jqXHR.responseText;
             document.querySelector('.loadingOverlay').classList.add('hidden');
-            document.querySelector('#dialog-error header h2').innerHTML = '<i data-feather="alert-triangle"></i> Error de PHP';
+            document.querySelector('#dialog-error header h2').innerHTML = '<i data-feather="alert-triangle"></i> Error de la API';
             document.querySelector('#dialog-error p').textContent =  responseText + " (" + jqXHR.status + ")";
             document.getElementById('uploadBtn').disabled = false;
             feather.replace();
