@@ -44,8 +44,16 @@ function submit($file){
                         file_put_contents($uploadFileDir . $newFileName, $sanitiziedContent);
                     }
 
-                    $domain = $GLOBALS['domain'];
-                    $fileUrl = "https://$domain/file/" . $newFileName;
+                    $domain = $GLOBALS['domain']; # Dominio del servidor
+                    $port = $_SERVER['SERVER_PORT']; # Puerto del servidor
+
+                    # Determina (de acuerdo al puerto) si la pagina usa HTTP o HTTPS
+                    if($port === 443){
+                        $fileUrl = "https://$domain/file/" . $newFileName;
+                    }
+                    else{
+                        $fileUrl = "http://$domain/file/" . $newFileName;
+                    }
 
                     echo $fileUrl;
 

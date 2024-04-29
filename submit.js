@@ -24,7 +24,7 @@ function uploadFile(event) {
         },
         error: function(jqXHR, textStatus, errorMessage) {
             var responseText = jqXHR.responseText
-            $('#output').html('<b>' + 'Error al subir el archivo: ' + responseText + " (" + jqXHR.status + ")" + '</b>');
+            $('#output').html('<b>' + 'Error al subir el archivo: ' + responseText + '</b>');
             fileInput.value = ''; // Limpia el archivo seleccionado
             uploadIcon.classList.remove('hidden');
             fileIcon.classList.add('hidden');
