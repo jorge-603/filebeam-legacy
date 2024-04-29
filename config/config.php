@@ -7,7 +7,8 @@
  * VARIABLES DE CONFIGURACION.
  */
 
-$domain = 'localhost/files'; # Nombre del dominio o IP del servidor para la URL del archivo subido.
+$domain = $_SERVER['SERVER_NAME']; # Dominio del servidor, esto es generado automaticamente.
 $uploadFileDir = 'file' . '/'; # Directorio donde va a ser alojado el archivo
 $unallowedfileExtensions = array('js', 'jar', 'scr', 'cpl', 'jsp', 'doc', 'docx'); # Extensiones no permitidas.
-$maxFileSize = 100 * 1000 * 1000; # 100 * 1000 * 1000 = 100000000 Bytes = 100 MB 
+$maxFileSize = 100 * 1000 * 1000; # 100 * 1000 * 1000 = 100000000 Bytes = 100 MB
+$maintenance = false; # Modo mantenimiento <true|false>
