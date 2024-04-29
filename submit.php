@@ -48,7 +48,7 @@ function submit($file){
                     $port = $_SERVER['SERVER_PORT']; # Puerto del servidor
 
                     # Determina (de acuerdo al puerto) si la pagina usa HTTP o HTTPS
-                    if($port === 443){
+                    if($port == 443){
                         $fileUrl = "https://$domain/file/" . $newFileName;
                     }
                     else{
