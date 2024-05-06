@@ -5,8 +5,6 @@ ini_set('display_errors',1); error_reporting(E_ALL);
 $url = $_SERVER['REQUEST_URI'];
 $file = basename($url);
 
-
-
 if(!$maintenance){
     if(file_exists($file)){
 
