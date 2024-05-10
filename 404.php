@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error 404</title>
-    <link rel="stylesheet" href="http://<?php echo $domain;?>/assets/css/status.css">
+    <link rel="stylesheet" href="../assets/css/status.css">
 </head>
 
 <body>
