@@ -1,4 +1,4 @@
-# FILES (DEV)
+# FILEBEAM
 
 **Files** es un servicio para compartir archivos facilmente con otras personas usando enlaces directos en redes sociales. Actualmente solo soporta Discord, pero proximamente iré añadiendo mas funciones.
 PD: Si, primera vez que uso el README.md :grin:
