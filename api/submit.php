@@ -1,7 +1,7 @@
 <?php 
 
-require "config/config.php";
-require "lib/rename.php";
+require "../config/config.php";
+require "../lib/rename.php";
 function submit($file){
     if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK){
         # Obtiene datos del archivo subido

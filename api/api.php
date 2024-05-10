@@ -1,7 +1,7 @@
 <?php
 
 require "submit.php";
-require "config/config.php";
+require "../config/config.php";
 
 if($maintenance){
     http_response_code(503);
