@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>En Mantenimiento</title>
-    <link rel="stylesheet" href="../assets/css/status.css">
+    <link rel="stylesheet" href="assets/css/status.css">
 </head>
 
 <body>
