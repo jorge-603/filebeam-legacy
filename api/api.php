@@ -30,11 +30,14 @@ switch ($method) {
         }
         break;
     case "GET":
-        include_once "cron.php";
-        break;
-    default:
         http_response_code(405);
-        echo "Solo se admiten peticiones POST (405) \n";
-        break;
+        $maxrand = 100;
+        $res = rand(0, $maxrand);
+        if($res != 1){
+            echo "Solo se admiten peticiones POST";
+        }
+        else {
+            include_once "noelia.php";
+        }
 }
 }
