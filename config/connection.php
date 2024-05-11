@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$database = "files";
+$database = "filebeam_tmp";
 $user = "root";
 $password = "";
 

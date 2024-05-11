@@ -13,11 +13,24 @@ if($maintenance){
 switch ($method) {
     case "POST":
         if (isset($_FILES["file"])) {
-            submit($_FILES["file"]);
+            if(isset($_POST['time'])){
+                # Archivo se sube con limite de tiempo
+                $time = htmlspecialchars($_POST['time'], ENT_QUOTES, 'UTF-8');
+                if(is_numeric($time)){
+                    submit($_FILES["file"], $time);
+                } else {
+                    echo "El valor de tiempo es inválido (no es numerico), usted envió " . $time;
+                }
+            } else { # Si no se envia el parametro "time"
+                submit($_FILES["file"], 0); # Archivo subido indefinidamente
+            }
         } else {
             http_response_code(400);
             echo "No se ha enviado ningun archivo (400) \n";
         }
+        break;
+    case "GET":
+        include_once "cron.php";
         break;
     default:
         http_response_code(405);
