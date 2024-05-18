@@ -4,7 +4,11 @@ require_once "../config/config.php";
 require_once "../lib/rename.php";
 
 function submit($file, $time){
+
     require_once "../config/connection.php";
+    require_once "../lib/time.php";
+    require_once "../api/log.php";
+
     if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK){
         # Obtiene datos del archivo subido
         $fileTmpPath = $_FILES['file']['tmp_name'];
@@ -33,15 +37,12 @@ function submit($file, $time){
             $maxFileSize = $GLOBALS['maxFileSize']; # 100 MB
         }
 
-
         if (!in_array($fileExtension, $GLOBALS['unallowedfileExtensions'])){
 
             # Valida el tipo MIME del archivo
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $fileMimeType = finfo_file($finfo, $fileTmpPath);
             finfo_close($finfo);
-
-
 
             # Valida el tamaño del archivo
             if($fileSize <= $maxFileSize){
@@ -58,13 +59,16 @@ function submit($file, $time){
                         file_put_contents($uploadFileDir . $newFileName, $sanitiziedContent);
                     }
 
-                    $timestamp = new DateTime();
-                    $sent_time = $timestamp->getTimestamp();
+                    
+                    $sent_time = getTimestamp();
+                    $file_dir = $uploadFileDir . $newFileName;
+                    $hash = hash_file('sha256', $file_dir);
                     
 
                     switch($time){
                         case 0:
                             # Esto es en caso de que el archivo sea permanente. Si no está registrado en la base de datos, no se eliminará
+                            addLog($newFileName, $hash);
                         break;
                         case 1:
                             $expire_time = $sent_time+3600; # 1 hora
@@ -73,6 +77,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                             break;
                         case 2:
                             $expire_time = $sent_time+7200; # 2 horas
@@ -81,6 +86,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                             break;
                         case 6:
                             $expire_time = $sent_time+21600; # 6 horas
@@ -89,6 +95,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                             break;
                         case 12:
                             $expire_time = $sent_time+43200; # 12 horas
@@ -97,6 +104,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                         case 24:
                             $expire_time = $sent_time+86400; # 24 horas
                             $stmt = $conn->prepare("INSERT INTO tmp_files (file_name, sent_time, expire_time) VALUES (:file_name, :sent_time, :expire_time)");
@@ -104,6 +112,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                             break;
                         case 48:
                             $expire_time = $sent_time+172800; # 48 horas
@@ -112,6 +121,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                             break;
                         case 72:
                             $expire_time = $sent_time+259200; # 72 horas
@@ -120,6 +130,7 @@ function submit($file, $time){
                             $stmt->bindParam("sent_time", $sent_time);
                             $stmt->bindParam(":expire_time", $expire_time);
                             $stmt->execute();
+                            addLog($newFileName, $hash);
                             break;
                         default:
                             echo "Valor de tiempo incorrecta, solo se admiten 0 (permanente), 1, 2, 6, 12, 24, 48 y 72 horas. Archivo eliminado";

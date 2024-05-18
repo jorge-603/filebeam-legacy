@@ -30,14 +30,17 @@ switch ($method) {
         }
         break;
     case "GET":
-        http_response_code(405);
-        $maxrand = 100;
-        $res = rand(0, $maxrand);
-        if($res != 1){
-            echo "Solo se admiten peticiones POST";
-        }
-        else {
-            include_once "noelia.php";
-        }
+        
+        include 'logs.php';
+
+        // http_response_code(405);
+        // $maxrand = 100;
+        // $res = rand(0, $maxrand);
+        // if($res != 1){
+        //     echo "Solo se admiten peticiones POST";
+        // }
+        // else {
+        //     include_once "noelia.php";
+        // }
 }
 }
