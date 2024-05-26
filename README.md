@@ -1,5 +1,8 @@
 # FILEBEAM
 
+> [!NOTE]
+> Este repositorio ha quedado obsoleto, por lo que el desarrollo de este ha sido detenido en su totalidad. Sigue el desarrollo actual de FileBeam [aqui](https://github.com/xXJorge603Xx/filebeam-laravel)
+
 **Files** es un servicio para compartir archivos facilmente con otras personas usando enlaces directos en redes sociales. Actualmente solo soporta Discord, pero proximamente iré añadiendo mas funciones.
 PD: Si, primera vez que uso el README.md :grin:
 
